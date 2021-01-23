@@ -1,0 +1,48 @@
+# The Docker Config version. Do not change.
+version: "3"
+services:
+  mysqldb:
+    image: mysql:8
+    container_name: cottonfactory_db
+    volumes:
+      - cottonfactory_data:/var/lib/mysql
+    networks:
+      - cottonfactory_net
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cotton_factory_dev
+      # Create user; requires a new volume. Will not create on existing volumes.
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: password
+    ports:
+      # Map local port 3307 to container port 3306 to prevent conflict with local MySQL
+      - "3307:3306"
+  cottonfactory_service:
+    image: lotech/cotton_factory:dev
+    container_name: cotton_factory_dev
+    environment:
+      DB_USER: docker
+      DB_PASSWORD: password
+      SPRING_PROFILE_ACTIVE: dev
+    depends_on:
+      - mysqldb
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8080:8200"
+    networks:
+      - cottonfactory_net
+# Persists data across deployments so database isn't lost
+volumes:
+  cottonfactory_data:
+    driver: local
+# Defines a shared network for all services to connect them and share data
+networks:
+  cottonfactory_net:
