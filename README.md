@@ -1,5 +1,7 @@
 # Cotton Factory Developer Docs
 
+![Service Status](https://github.com/Tech-Student-Labs/cnd_cotton_factory_exercise/workflows/Deploy%20to%20Heroku/badge.svg)
+
 You can visit the Swagger docs for this API at [https://cotton-factory-1220.herokuapp.com/swagger-ui.html](https://cotton-factory-1220.herokuapp.com/swagger-ui.html)
 ## Documenting Your Code
 

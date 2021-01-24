@@ -1,6 +1,9 @@
 name: Deploy to Heroku
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -9,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.8.9 # This is the action
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "cotton-factory-1220" #Must be unique in Heroku
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}  # Defined in the repository Settings > Secrets
           heroku_email: ${{secrets.HEROKU_EMAIL}}
+          heroku_app_name: "cotton-factory-1220" #Must be unique in Heroku
           usedocker: true

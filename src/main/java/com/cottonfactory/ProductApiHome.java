@@ -10,6 +10,6 @@ public class ProductApiHome {
 
     @GetMapping
     public String welcomeToDocs() {
-        return "Welcome home, Swagger!";
+        return "Welcome home, Swagger is live!";
     }
 }
