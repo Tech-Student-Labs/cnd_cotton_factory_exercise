@@ -16,8 +16,12 @@ import io.swagger.annotations.Api;
 public class ClothesApiController {
 
     @GetMapping
-    public List<String> getShirts() {
+    public List<String> getAllClothes() {
         return new ArrayList<>();
     }
 }
 ```
+
+## Github Actions
+
+- [Environment Variables](https://docs.github.com/en/actions/reference/environment-variables)
