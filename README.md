@@ -24,6 +24,16 @@ public class ClothesApiController {
 }
 ```
 
+## Teams
+
+| Team | Members                                                                                                        | Products             |
+|------|----------------------------------------------------------------------------------------------------------------|----------------------|
+| 1    | Hemasree Darisiguntla & Anurag Vishnoi & Xiaonan Wei & Peter Trotter                                           | Pants and Slacks     |
+| 2    | Parthiban Samykutti & Jose Durazo & Shashi Kumar R & Subhrajit Banerjee & Asiyat Kush                          | Skirts and Dresses   |
+| 3    | Gokula Krishnan Thiruppathi Venkatesan & Srijan Khan & Amalesan Subramanian & Jennifer Dalton                  | Shirts and Sweaters  |
+| 4    | Prasanth Sivakoti & Bharathi Mohan Bhagyanath & Uthiraraj Saminathan & RamaKrishnan Ramasamy & Ofeoritse Nanna | Ties and Accessories |
+| 5    | Naga Vijaya Patibandla & Bala Balaji Achanta & Nagarjuna Boddu & Vyom Rastogi                                  | Jackets and Shoes    |
+
 ## Github Actions
 
 - [Environment Variables](https://docs.github.com/en/actions/reference/environment-variables)
