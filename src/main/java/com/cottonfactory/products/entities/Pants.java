@@ -13,7 +13,6 @@ public class Pants {
     private String type;
     private Integer inseam;
     private Integer waist;
-    //@Column(name="PantsSize")
     private String size;
     private String color;
     private String designer;
