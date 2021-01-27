@@ -25,13 +25,10 @@ public class SweaterIntTest {
     private ObjectMapper mapper;
 
     @Test
-    @DisplayName("Test case to test the crete sweater API")
+    @DisplayName("Test case to test the create sweater With size")
     public void testCreateSweaterWithSize() throws Exception {
         Sweater sweater = Sweater.builder()
                 .type("pullover")
-                //.sleeve(5)
-                //.neck(20)
-                //.chest(40)
                 .size("S")
                 .customSize("40*20*5")
                 .color("Blue")
@@ -54,14 +51,13 @@ public class SweaterIntTest {
     }
 
     @Test
-    @DisplayName("Test case to test the crete sweater API")
+    @DisplayName("Test case to test the create sweater API with Dimension")
     public void testCreateSweaterWithDimension() throws Exception {
         Sweater sweater = Sweater.builder()
                 .type("pullover")
                 .sleeve(5)
                 .neck(20)
                 .chest(40)
-                //.size("S")
                 .customSize("40*20*5")
                 .color("Blue")
                 .longSleeve(true)
@@ -80,5 +76,25 @@ public class SweaterIntTest {
                 .andExpect(jsonPath("$.color").value(sweater.getColor()))
                 .andExpect(jsonPath("$.longSleeve").value(sweater.getLongSleeve()))
                 .andExpect(jsonPath("$.price").value(sweater.getPrice()));
+    }
+
+    @Test
+    @DisplayName("Test case to test the create sweater API with size and dimension")
+    public void testCreateSweaterExpectInvalidSweaterException() throws Exception {
+        Sweater sweater = Sweater.builder()
+                .type("pullover")
+                .sleeve(5)
+                .neck(20)
+                .chest(40)
+                .size("S")
+                .customSize("40*20*5")
+                .color("Blue")
+                .longSleeve(true)
+                .price(new BigDecimal(25.00)).build();
+        mvc.perform(post("/api/products/sweater")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(sweater)))
+                .andExpect(status().isNotAcceptable())
+                .andExpect(jsonPath("$").value("Invalid Sweater size details"));
     }
 }
