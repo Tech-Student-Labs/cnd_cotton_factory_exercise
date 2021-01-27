@@ -31,18 +31,4 @@ public class DressControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",hasSize(0)));
     }
-
-    @Autowired
-    private ObjectMapper mapper;
-
-
-    @Test
-    public void test_addNewDress() throws Exception {
-        DressEntity dressEntity = DressEntity.builder()
-                .type("tunic").build();
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/products/dress")
-                        .content(mapper.writeValueAsString(dressEntity)).contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().isOk());
-
-    }
 }

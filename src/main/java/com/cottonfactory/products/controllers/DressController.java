@@ -5,7 +5,6 @@ import com.cottonfactory.products.services.DressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,12 +15,7 @@ public class DressController {
     private DressService dressService;
 
     @GetMapping("/dress")
-    public List<DressEntity> getAllDress(){
+    public List<DressEntity> getAllDress() {
         return dressService.getAllDress();
-    }
-
-    @PostMapping("/dress")
-    public DressEntity addNewDress(@RequestBody DressEntity dressEntity){
-        return dressService.addNewDress(dressEntity);
     }
 }
