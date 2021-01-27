@@ -38,10 +38,11 @@ public class DressControllerIntegrationTest {
 
     @Test
     public void test_addNewDress() throws Exception {
-        DressEntity dressEntity = new DressEntity();
+        DressEntity dressEntity = DressEntity.builder()
+                .type("tunic").build();
         mockMvc.perform(MockMvcRequestBuilders.post("/api/products/dress")
                         .content(mapper.writeValueAsString(dressEntity)).contentType(MediaType.APPLICATION_JSON))
-                        .andExpect(status().isCreated());
+                        .andExpect(status().isOk());
 
     }
 }
