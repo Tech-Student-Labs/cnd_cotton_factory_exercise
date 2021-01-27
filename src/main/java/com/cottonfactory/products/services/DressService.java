@@ -16,4 +16,8 @@ public class DressService {
     public List<DressEntity> getAllDress() {
         return dressRepository.findAll();
     }
+
+    public DressEntity addNewDress(DressEntity dressEntity) {
+        return dressRepository.save(dressEntity);
+    }
 }
