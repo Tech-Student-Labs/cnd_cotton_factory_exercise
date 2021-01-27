@@ -1,4 +1,4 @@
-# Cotton Factory Developer Docs - Test
+# Cotton Factory Developer Docs
 
 ![Service Status](https://github.com/Tech-Student-Labs/cnd_cotton_factory_exercise/workflows/Deploy%20to%20Heroku/badge.svg)
 
