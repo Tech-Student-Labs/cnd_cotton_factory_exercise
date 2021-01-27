@@ -24,6 +24,10 @@ public class PantsController_IntegrationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").exists())
                 .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$.[0].type").value("athletic"));
+                .andExpect(jsonPath("$.[0].type").value("athletic"))
+                .andExpect(jsonPath("$.[0].size").value("25"))
+                .andExpect(jsonPath("$.[0].color").value("Grey"))
+                .andExpect(jsonPath("$.[0].designer").value("Encoded"))
+                .andExpect(jsonPath("$.[0].price").value(50.0));
     }
 }

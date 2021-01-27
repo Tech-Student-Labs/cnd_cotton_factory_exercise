@@ -2,6 +2,7 @@ package com.cottonfactory.products.controllers;
 
 import com.cottonfactory.products.entities.Pants;
 import com.cottonfactory.products.services.PantsService;
+import com.cottonfactory.products.services.dtos.PantsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ public class PantsController {
     private PantsService pantsService;
 
     @GetMapping("/api/products/pants")
-    public List<Pants> getAllPants() {
+    public List<PantsDto> getAllPants() {
         return pantsService.findAllPants();
     }
 }

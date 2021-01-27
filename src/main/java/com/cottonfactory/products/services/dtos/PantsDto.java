@@ -1,23 +1,25 @@
-package com.cottonfactory.products.entities;
+package com.cottonfactory.products.services.dtos;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-public class Pants {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class PantsDto {
 
     private String type;
-    private Integer inseam;
-    private Integer waist;
-    //@Column(name="PantsSize")
     private String size;
     private String color;
     private String designer;
     private BigDecimal price;
+
+    public PantsDto() {
+    }
+
+    public PantsDto(String type, String size, String color, String designer, BigDecimal price) {
+        this.type = type;
+        this.size = size;
+        this.color = color;
+        this.designer = designer;
+        this.price = price;
+    }
 
     public String getType() {
         return type;
@@ -25,22 +27,6 @@ public class Pants {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Integer getInseam() {
-        return inseam;
-    }
-
-    public void setInseam(Integer inseam) {
-        this.inseam = inseam;
-    }
-
-    public Integer getWaist() {
-        return waist;
-    }
-
-    public void setWaist(Integer waist) {
-        this.waist = waist;
     }
 
     public String getSize() {
