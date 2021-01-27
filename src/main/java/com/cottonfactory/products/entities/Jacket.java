@@ -10,7 +10,7 @@ public class Jacket {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
     private String season;
     private String size;
     private String color;
@@ -54,7 +54,7 @@ public class Jacket {
         return price;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
