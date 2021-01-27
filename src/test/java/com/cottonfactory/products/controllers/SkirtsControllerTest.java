@@ -26,22 +26,6 @@ public class SkirtsControllerTest {
     private SkirtsRepository skirtsRepository;
 
     @Test
-    public void testGetAllSkirtsWithZeroResult() throws Exception {
-        mockMvc.perform(get("/api/products/skirts"))
-                .andExpect(status().isOk())
-        .andExpect(jsonPath("$.length()").value(0));
-    }
-
-    @Test
-    public void testGetAllSkirtsWithOneResult() throws Exception {
-        when(skirtsRepository.findAll()).thenReturn(buildSkirtList(1));
-        mockMvc.perform(get("/api/products/skirts"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].type").value("mini"));
-    }
-
-    @Test
     public void testGetAllSkirtsWithManyResults() throws Exception {
         when(skirtsRepository.findAll()).thenReturn(buildSkirtList(5));
         mockMvc.perform(get("/api/products/skirts"))
