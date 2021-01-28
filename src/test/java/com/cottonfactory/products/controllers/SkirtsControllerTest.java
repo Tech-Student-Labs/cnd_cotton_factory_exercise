@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -28,10 +29,20 @@ public class SkirtsControllerTest {
     @Test
     public void testGetAllSkirtsWithManyResults() throws Exception {
         when(skirtsRepository.findAll()).thenReturn(buildSkirtList(5));
+
         mockMvc.perform(get("/api/products/skirts"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(5))
                 .andExpect(jsonPath("$[3].id").value(3));
+    }
+
+    @Test
+    public void testGetSkirtById_ReturnsTheSkirt() throws Exception {
+        when(skirtsRepository.findById(1)).thenReturn(Optional.of(Skirt.builder().id(1).build()));
+
+        mockMvc.perform(get("/api/products/skirts/{id}", 1))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.id").value(1));
     }
 
     private List<Skirt> buildSkirtList(int count){
