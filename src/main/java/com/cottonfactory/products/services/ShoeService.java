@@ -21,4 +21,9 @@ public class ShoeService {
 
         return shoeRepository.findAll();
     }
+
+    public ShoeProduct getShoeById(Long id) {
+
+        return shoeRepository.findById(id).orElse(new ShoeProduct());
+    }
 }

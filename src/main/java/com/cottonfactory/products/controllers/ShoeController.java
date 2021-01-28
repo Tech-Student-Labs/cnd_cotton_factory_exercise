@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products/shoe")
-@Api(tags = "shoes")
+@Api(tags = {"shoes"})
 public class ShoeController {
 
     @Autowired
@@ -27,5 +27,10 @@ public class ShoeController {
     @GetMapping
     public List<ShoeProduct> getAllShoes(){
         return shoeService.getAllShoes();
+    }
+
+    @GetMapping("/{id}")
+    public ShoeProduct getShoeById(@PathVariable Long id){
+        return shoeService.getShoeById(id);
     }
 }

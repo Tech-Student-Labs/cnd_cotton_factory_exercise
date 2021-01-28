@@ -69,8 +69,22 @@ designer options: Encoded, Footsy, Stepper Leper
                 .andExpect(jsonPath("$[0].designer").value("Encoded"))
                 .andExpect(jsonPath("$[0].laced").value((true)))
                 .andExpect(jsonPath("$[0].price").value(75.00));
+    }
 
+    @Test
+    public void test_getShoeById() throws Exception {
+        test_Add_Shoe();
+        mockMvc.perform(get("/api/products/shoe/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.size").value(10))
+                .andExpect(jsonPath("$.type").value("athletic"))
+                .andExpect(jsonPath("$.height").value("normal"))
+                .andExpect(jsonPath("$.material").value("leather"))
+                .andExpect(jsonPath("$.designer").value("Encoded"))
+                .andExpect(jsonPath("$.laced").value((true)))
+                .andExpect(jsonPath("$.price").value(75.00));
 
     }
 
-}
+  }
