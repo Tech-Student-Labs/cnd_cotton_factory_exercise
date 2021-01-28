@@ -1,7 +1,9 @@
 package com.cottonfactory.products.services;
 
+import com.cottonfactory.products.entities.Pants;
 import com.cottonfactory.products.repositories.PantsRepository;
 import com.cottonfactory.products.services.dtos.PantsDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,5 +25,13 @@ public class PantsService {
                             pants.getPrice());
             return pantsDto;
         }).collect(Collectors.toList());
+    }
+
+    public PantsDto createNewPants(Pants pantsEntity) {
+        pantsRepository.save(pantsEntity);
+        PantsDto pantsDto =
+                new PantsDto(pantsEntity.getType(), pantsEntity.getSize(), pantsEntity.getColor(), pantsEntity.getDesigner(),
+                        pantsEntity.getPrice());
+        return pantsDto;
     }
 }
