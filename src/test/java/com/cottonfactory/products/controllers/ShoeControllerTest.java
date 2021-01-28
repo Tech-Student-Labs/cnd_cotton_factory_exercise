@@ -11,7 +11,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -49,6 +52,24 @@ designer options: Encoded, Footsy, Stepper Leper
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(shoeProduct)))
                 .andExpect(status().isCreated());
+
+    }
+
+    @Test
+    public void test_getAllShoes() throws Exception {
+        test_Add_Shoe();
+        mockMvc.perform(get("/api/products/shoe"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id").exists())
+                .andExpect(jsonPath("$[0].size").value(10))
+                .andExpect(jsonPath("$[0].type").value("athletic"))
+                .andExpect(jsonPath("$[0].height").value("normal"))
+                .andExpect(jsonPath("$[0].material").value("leather"))
+                .andExpect(jsonPath("$[0].designer").value("Encoded"))
+                .andExpect(jsonPath("$[0].laced").value((true)))
+                .andExpect(jsonPath("$[0].price").value(75.00));
+
 
     }
 

@@ -1,15 +1,17 @@
 package com.cottonfactory.products.entities;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name ="shoe_product")
-@Data
 @Builder
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
 public class ShoeProduct {
 
     @Id
@@ -23,5 +25,6 @@ public class ShoeProduct {
     private String designer;
     private Boolean laced;
     private BigDecimal price;
+
 
 }
