@@ -8,16 +8,17 @@ import java.math.BigDecimal;
 @Entity
 public class Tie {
 
-  @Id
-  @GeneratedValue
-  private Integer id;
-  private String  type;
-  private Integer length;
-  private Integer width;
-  private String material;
-  private String designer;
-  private String color;
-  private BigDecimal price;
+    @Id
+    @GeneratedValue
+    private Integer id;
+    private String  type;
+    private Integer length;
+    private Integer width;
+    private String material;
+    private String designer;
+    private String color;
+    private BigDecimal price;
+
 
     public Tie() {
     }
