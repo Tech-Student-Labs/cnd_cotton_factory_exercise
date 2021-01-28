@@ -3,7 +3,6 @@ package com.cottonfactory.products.services;
 import com.cottonfactory.products.entities.Pants;
 import com.cottonfactory.products.repositories.PantsRepository;
 import com.cottonfactory.products.services.dtos.PantsDto;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +11,11 @@ import java.util.stream.Collectors;
 @Service
 public class PantsService {
 
+    private PantsRepository pantsRepository;
+
     public PantsService(PantsRepository pantsRepository) {
         this.pantsRepository = pantsRepository;
     }
-
-    private PantsRepository pantsRepository;
 
     public List<PantsDto> findAllPants() {
         return pantsRepository.findAll().stream().map(pants -> {
@@ -32,7 +31,12 @@ public class PantsService {
     }
 
     private PantsDto getPantsDto(Pants pantsEntity) {
-        return new PantsDto(pantsEntity.getType(), pantsEntity.getSize(), pantsEntity.getColor(), pantsEntity.getDesigner(),
-                pantsEntity.getPrice());
+        return PantsDto.builder()
+                .type(pantsEntity.getType())
+                .size(pantsEntity.getSize())
+                .color(pantsEntity.getColor())
+                .designer(pantsEntity.getDesigner())
+                .price(pantsEntity.getPrice())
+                .build();
     }
 }

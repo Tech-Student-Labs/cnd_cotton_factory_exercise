@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -19,15 +18,15 @@ public class PantsServiceTest {
         PantsRepository mockPantsRepository = mock(PantsRepository.class);
         PantsService pantsService = new PantsService(mockPantsRepository);
 
-       Pants pantsEntity = Pants.builder()
-               .type("athletic")
-               .inseam(25)
-               .waist(25)
-               .size("25")
-               .color("Grey")
-               .designer("Encoded")
-               .price(BigDecimal.valueOf(50.0))
-               .build();
+        Pants pantsEntity = Pants.builder()
+                .type("athletic")
+                .inseam(25)
+                .waist(25)
+                .size("25")
+                .color("Grey")
+                .designer("Encoded")
+                .price(BigDecimal.valueOf(50.0))
+                .build();
 
         when(mockPantsRepository.save(pantsEntity)).thenReturn(pantsEntity);
 
@@ -41,7 +40,7 @@ public class PantsServiceTest {
 
         PantsDto actualPantsDto = pantsService.createNewPants(pantsEntity);
 
-        assertEquals(expectedPantsDto,actualPantsDto);
+        assertEquals(expectedPantsDto, actualPantsDto);
 
     }
 
