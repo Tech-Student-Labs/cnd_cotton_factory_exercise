@@ -1,6 +1,7 @@
 package com.cottonfactory.products.services;
 
 import com.cottonfactory.products.entities.Slack;
+import com.cottonfactory.products.repositories.SlackRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,6 @@ public class SlackService {
 
     public List<Slack> findAllSlacks() {
         return slackRepository.findAll();
-
-
+    }
 
 }

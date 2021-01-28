@@ -28,7 +28,7 @@ public class SlackServiceTest {
     @Test
     public void test_findAll_returnEmptylist_whenNoSlackFound() {
         when(slackRepository.findAll()).thenReturn(new ArrayList<>());
-        assertEquals(0, slackService.findAll().size());
+        assertEquals(0, slackService.findAllSlacks().size());
     }
 
     @Test
@@ -38,6 +38,6 @@ public class SlackServiceTest {
                 .type("formal")
                 .build();
         when(slackRepository.findAll()).thenReturn(Arrays.asList(expectedSlack));
-        assertTrue( slackService.findAll().size() > 0);
+        assertTrue( slackService.findAllSlacks().size() > 0);
     }
 }
