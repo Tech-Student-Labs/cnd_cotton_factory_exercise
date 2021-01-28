@@ -1,17 +1,23 @@
 package com.cottonfactory.products.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class Tie {
-
-  private Integer id;
-  private String  type;
-  private Integer length;
-  private Integer width;
-  private String material;
-  private String designer;
-  private String color;
-  private BigDecimal price;
+    @Id
+    @GeneratedValue
+    private Integer id;
+    private String  type;
+    private Integer length;
+    private Integer width;
+    private String material;
+    private String designer;
+    private String color;
+    private BigDecimal price;
 
     public Tie() {
     }
