@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SlackService {
-    public List<Slack> findAll() {
+    public List<Slack> findAllSlacks() {
         return new ArrayList<>();
     }
 }

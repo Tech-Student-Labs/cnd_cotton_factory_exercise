@@ -24,14 +24,6 @@ public class SlackControllerTest {
 
     @MockBean
     private SlackService slackService;
-// /api/products/slacks
-    @Test
-    public void test_getAllSlacks_return200_withEmptyBody_whenNoslackFound() throws Exception {
-        when(slackService.findAll()).thenReturn(new ArrayList<>());
-        mockMvc.perform(get("/api/products/slacks"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(0));
-    }
 
     @Test
     public void test_getAllSlacks_return200_withDetailFound_excludingWaistInseam() throws Exception {
@@ -39,7 +31,7 @@ public class SlackControllerTest {
                 .builder()
                 .type("formal")
                 .build();
-        when(slackService.findAll()).thenReturn(Arrays.asList(expectedSlack));
+        when(slackService.findAllSlacks()).thenReturn(Arrays.asList(expectedSlack));
 
         mockMvc.perform(get("/api/products/slacks"))
                 .andExpect(status().isOk())
