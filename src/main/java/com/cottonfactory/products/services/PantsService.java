@@ -20,18 +20,19 @@ public class PantsService {
 
     public List<PantsDto> findAllPants() {
         return pantsRepository.findAll().stream().map(pants -> {
-            PantsDto pantsDto =
-                    new PantsDto(pants.getType(), pants.getSize(), pants.getColor(), pants.getDesigner(),
-                            pants.getPrice());
+            PantsDto pantsDto = getPantsDto(pants);
             return pantsDto;
         }).collect(Collectors.toList());
     }
 
     public PantsDto createNewPants(Pants pantsEntity) {
         pantsRepository.save(pantsEntity);
-        PantsDto pantsDto =
-                new PantsDto(pantsEntity.getType(), pantsEntity.getSize(), pantsEntity.getColor(), pantsEntity.getDesigner(),
-                        pantsEntity.getPrice());
+        PantsDto pantsDto = getPantsDto(pantsEntity);
         return pantsDto;
+    }
+
+    private PantsDto getPantsDto(Pants pantsEntity) {
+        return new PantsDto(pantsEntity.getType(), pantsEntity.getSize(), pantsEntity.getColor(), pantsEntity.getDesigner(),
+                pantsEntity.getPrice());
     }
 }
