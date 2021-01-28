@@ -25,8 +25,8 @@ public class PantsService {
     }
 
     public PantsDto createNewPants(Pants pantsEntity) {
-        pantsRepository.save(pantsEntity);
-        PantsDto pantsDto = getPantsDto(pantsEntity);
+        Pants pants = pantsRepository.save(pantsEntity);
+        PantsDto pantsDto = getPantsDto(pants);
         return pantsDto;
     }
 
