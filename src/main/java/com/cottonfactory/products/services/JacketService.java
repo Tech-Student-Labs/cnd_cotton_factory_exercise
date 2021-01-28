@@ -9,7 +9,7 @@ public class JacketService {
 
     private JacketRepository repository;
 
-    JacketService(JacketRepository repository){
+    public JacketService(JacketRepository repository){
         this.repository = repository;
     }
 

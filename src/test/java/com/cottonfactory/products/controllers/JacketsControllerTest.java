@@ -35,7 +35,7 @@ public class JacketsControllerTest {
                 true,"denim", new BigDecimal(50.0)
         );
 
-        mockMvc.perform(post("/api/v1/products/jackets")
+        mockMvc.perform(post("/api/products/jackets")
                         .content(toString(jacket))
                         .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(status().isCreated())

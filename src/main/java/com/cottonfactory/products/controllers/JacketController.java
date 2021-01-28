@@ -1,26 +1,31 @@
 package com.cottonfactory.products.controllers;
 
-import com.cottonfactory.ProductApiHome;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.cottonfactory.products.entities.Jacket;
 import com.cottonfactory.products.services.JacketService;
+
 import io.swagger.annotations.Api;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/products")
+@RequestMapping("api/products")
 @Api(tags = "jackets")
 public class JacketController {
 
     private JacketService service;
 
-    JacketController(JacketService service){
+    public JacketController(JacketService service){
         this.service = service;
     }
 
     @PostMapping("/jackets")
     @ResponseStatus(value = HttpStatus.CREATED)
-     Jacket createJacket(@RequestBody Jacket jacket){
+    public Jacket createJacket(@RequestBody Jacket jacket){
         return service.createJacket(jacket);
     }
 
