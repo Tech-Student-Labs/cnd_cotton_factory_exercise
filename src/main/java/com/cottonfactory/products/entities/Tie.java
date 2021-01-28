@@ -5,11 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
-@Entity
+
 public class Tie {
 
-  @Id
-  @GeneratedValue
   private Integer id;
   private String  type;
   private Integer length;
