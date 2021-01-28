@@ -15,7 +15,7 @@ public class TieController {
 
     private TieService service;
 
-    @Autowired
+
     public TieController(TieService service) {
         this.service = service;
     }
