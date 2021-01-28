@@ -9,14 +9,15 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,12 +31,16 @@ public class DressControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
+    @Autowired @Lazy
     private ObjectMapper mapper;
 
     @MockBean
     private DressRepository dressRepository;
 
+    /**
+     * Test for empty dress from the repository
+     * @throws Exception
+     */
     @Test
     public void test_getAllDress() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/products/dress"))
@@ -43,6 +48,10 @@ public class DressControllerIntegrationTest {
                 .andExpect(jsonPath("$", hasSize(0)));
     }
 
+    /**
+     * Test to get all the dress form the repository
+     * @throws Exception
+     */
     @Test
     public void test_getAllDressWithValues() throws Exception {
         when(dressRepository.findAll()).thenReturn(getAllDress());
@@ -52,11 +61,12 @@ public class DressControllerIntegrationTest {
                 .andExpect(jsonPath("$.[0].type").value("tunic"));
     }
 
+    /**
+     * Util method to construct the Dress entity object.
+     * @return
+     */
     private List<DressEntity> getAllDress() {
-        DressEntity.builder().type("tunic");
-        List<DressEntity> list = new ArrayList();
-        DressEntity dressEntity = DressEntity.builder().type("tunic").build();
-        list.add(dressEntity);
-        return list;
+        return List.of(DressEntity.builder().type("tunic").build());
     }
 }
+
