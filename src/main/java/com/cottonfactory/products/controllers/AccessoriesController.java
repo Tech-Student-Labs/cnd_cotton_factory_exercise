@@ -1,9 +1,7 @@
 
 package com.cottonfactory.products.controllers;
-
 import com.cottonfactory.products.entities.Accessories;
 import com.cottonfactory.products.services.AccessoriesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -14,8 +12,12 @@ import java.util.List;
 @RestController
 public class AccessoriesController {
 
-    @Autowired
-    AccessoriesService accessoriesService;
+
+    private AccessoriesService accessoriesService;
+
+    public AccessoriesController(AccessoriesService accessoriesService) {
+        this.accessoriesService = accessoriesService;
+    }
 
     @GetMapping("/api/products/accessories")
     @ResponseStatus(HttpStatus.OK)
