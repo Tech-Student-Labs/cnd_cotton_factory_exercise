@@ -1,4 +1,4 @@
-package com.cottonfactory.products.entities.sweater;
+package com.cottonfactory.products.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

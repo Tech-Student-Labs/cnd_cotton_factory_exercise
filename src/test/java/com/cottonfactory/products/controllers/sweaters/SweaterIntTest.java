@@ -1,6 +1,6 @@
 package com.cottonfactory.products.controllers.sweaters;
 
-import com.cottonfactory.products.entities.sweater.Sweater;
+import com.cottonfactory.products.entities.Sweater;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

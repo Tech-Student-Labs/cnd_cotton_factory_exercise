@@ -1,6 +1,6 @@
-package com.cottonfactory.products.controllers.sweater;
+package com.cottonfactory.products.controllers;
 
-import com.cottonfactory.products.entities.sweater.Sweater;
+import com.cottonfactory.products.entities.Sweater;
 import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
