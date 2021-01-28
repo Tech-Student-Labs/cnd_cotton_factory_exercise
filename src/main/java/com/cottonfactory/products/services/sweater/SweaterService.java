@@ -9,10 +9,6 @@ public class SweaterService {
 
     private SweaterRepository sweaterRepository;
 
-    public SweaterService(){
-
-    }
-
     public SweaterService(SweaterRepository sweaterRepository) {
         this.sweaterRepository = sweaterRepository;
     }

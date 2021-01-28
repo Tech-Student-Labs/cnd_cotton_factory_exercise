@@ -2,6 +2,7 @@ package com.cottonfactory.products.controllers.sweater;
 
 import com.cottonfactory.products.entities.sweater.Sweater;
 import com.cottonfactory.products.services.sweater.SweaterService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ public class SweaterController {
 
     private SweaterService sweaterService;
 
+    @Autowired
     public SweaterController(SweaterService sweaterService) {
         this.sweaterService = sweaterService;
     }
