@@ -1,29 +1,25 @@
 package com.cottonfactory.products.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.math.BigDecimal;
+public class Accessories {
 
-@Entity
-public class Tie {
-
-    @Id
-    @GeneratedValue
     private Integer id;
-    private String  type;
-    private Integer length;
-    private Integer width;
+    private String type;
+    private Integer size;
     private String material;
     private String designer;
     private String color;
-    private BigDecimal price;
+    private Double price;
 
-    public Tie() {
+    public Accessories() {
     }
 
-    public Tie(Integer id) {
-        this.id = id;
+    public Accessories(String type, Integer size, String material, String designer, String color, Double price) {
+        this.type = type;
+        this.size = size;
+        this.material = material;
+        this.designer = designer;
+        this.color = color;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -42,20 +38,12 @@ public class Tie {
         this.type = type;
     }
 
-    public Integer getLength() {
-        return length;
+    public Integer getSize() {
+        return size;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
+    public void setSize(Integer size) {
+        this.size = size;
     }
 
     public String getMaterial() {
@@ -82,11 +70,11 @@ public class Tie {
         this.color = color;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

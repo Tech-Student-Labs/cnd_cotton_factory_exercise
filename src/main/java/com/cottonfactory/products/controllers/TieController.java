@@ -15,7 +15,6 @@ public class TieController {
 
     private TieService service;
 
-
     public TieController(TieService service) {
         this.service = service;
     }

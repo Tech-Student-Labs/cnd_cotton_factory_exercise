@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TieService {
 
+
     private TieRepository tieRepository;
 
     public TieService(TieRepository tieRepository) {

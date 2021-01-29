@@ -1,5 +1,6 @@
 package com.cottonfactory.products.services;
 
+import com.cottonfactory.products.entities.Pants;
 import com.cottonfactory.products.repositories.PantsRepository;
 import com.cottonfactory.products.services.dtos.PantsDto;
 import org.springframework.stereotype.Service;
@@ -10,18 +11,32 @@ import java.util.stream.Collectors;
 @Service
 public class PantsService {
 
+    private PantsRepository pantsRepository;
+
     public PantsService(PantsRepository pantsRepository) {
         this.pantsRepository = pantsRepository;
     }
 
-    private PantsRepository pantsRepository;
-
     public List<PantsDto> findAllPants() {
         return pantsRepository.findAll().stream().map(pants -> {
-            PantsDto pantsDto =
-                    new PantsDto(pants.getType(), pants.getSize(), pants.getColor(), pants.getDesigner(),
-                            pants.getPrice());
+            PantsDto pantsDto = getPantsDto(pants);
             return pantsDto;
         }).collect(Collectors.toList());
+    }
+
+    public PantsDto createNewPants(Pants pantsEntity) {
+        Pants pants = pantsRepository.save(pantsEntity);
+        PantsDto pantsDto = getPantsDto(pants);
+        return pantsDto;
+    }
+
+    private PantsDto getPantsDto(Pants pantsEntity) {
+        return PantsDto.builder()
+                .type(pantsEntity.getType())
+                .size(pantsEntity.getSize())
+                .color(pantsEntity.getColor())
+                .designer(pantsEntity.getDesigner())
+                .price(pantsEntity.getPrice())
+                .build();
     }
 }
