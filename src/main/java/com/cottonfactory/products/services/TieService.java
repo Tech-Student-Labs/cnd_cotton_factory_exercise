@@ -8,6 +8,7 @@ public class TieService {
 
 
     public Tie createTie(Tie tie) {
-        return new Tie();
+        tie.setId(1);
+        return tie;
     }
 }
