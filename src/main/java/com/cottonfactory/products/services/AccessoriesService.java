@@ -1,10 +1,7 @@
 package com.cottonfactory.products.services;
-
 import com.cottonfactory.products.entities.Accessories;
 import com.cottonfactory.products.repositories.AccessoriesRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.List;
 
 
