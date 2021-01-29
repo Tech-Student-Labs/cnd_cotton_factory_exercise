@@ -60,6 +60,11 @@ public class PantsController_IntegrationTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8")
                 .content(content))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.type").value("athletic"))
+                .andExpect(jsonPath("$.size").value("25"))
+                .andExpect(jsonPath("$.color").value("Grey"))
+                .andExpect(jsonPath("$.designer").value("Encoded"))
+                .andExpect(jsonPath("$.price").value(50.0));
     }
 }
