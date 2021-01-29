@@ -39,4 +39,11 @@ public class PantsService {
                 .price(pantsEntity.getPrice())
                 .build();
     }
+
+    public PantsDto getPantsByProductId(Long productId) {
+        Pants pantsEntity = pantsRepository.getOne(productId);
+        PantsDto pantsDTO = getPantsDto(pantsEntity);
+
+        return pantsDTO;
+    }
 }
