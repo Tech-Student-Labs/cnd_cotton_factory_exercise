@@ -90,6 +90,7 @@ designer options: Encoded, Footsy, Stepper Leper
     @Test
     public void test_Update_Shoe() throws Exception {
         test_Add_Shoe();
+        test_Add_Shoe();
         ShoeProduct shoeProduct = ShoeProduct.builder()
                 .material("canvas")
                 .type("athletic")
@@ -100,7 +101,7 @@ designer options: Encoded, Footsy, Stepper Leper
                 .price(new BigDecimal(100.00))
                 .build();
 
-        mockMvc.perform(put("/api/products/shoe/1")
+        mockMvc.perform(put("/api/products/shoe/2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(shoeProduct)))
                 .andExpect(status().isOk());
