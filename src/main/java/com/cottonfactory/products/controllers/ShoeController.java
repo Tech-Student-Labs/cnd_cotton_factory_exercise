@@ -33,4 +33,10 @@ public class ShoeController {
     public ShoeProduct getShoeById(@PathVariable Long id){
         return shoeService.getShoeById(id);
     }
+
+    @PutMapping("/{id}")
+    public void updateShoeProduct(@PathVariable Long id, @RequestBody ShoeProduct shoeProduct){
+        shoeProduct.setId(id);
+        shoeService.updateShoeProduct(shoeProduct);
+    }
 }

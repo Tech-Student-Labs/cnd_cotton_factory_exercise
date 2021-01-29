@@ -12,8 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.math.BigDecimal;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -86,5 +85,28 @@ designer options: Encoded, Footsy, Stepper Leper
                 .andExpect(jsonPath("$.price").value(75.00));
 
     }
+
+
+    @Test
+    public void test_Update_Shoe() throws Exception {
+        test_Add_Shoe();
+        ShoeProduct shoeProduct = ShoeProduct.builder()
+                .material("canvas")
+                .type("athletic")
+                .height("knee")
+                .designer("Stepper")
+                .laced(false)
+                .size(9)
+                .price(new BigDecimal(100.00))
+                .build();
+
+        mockMvc.perform(put("/api/products/shoe/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(shoeProduct)))
+                .andExpect(status().isOk());
+
+    }
+
+
 
   }

@@ -26,4 +26,8 @@ public class ShoeService {
 
         return shoeRepository.findById(id).orElse(new ShoeProduct());
     }
+
+    public void updateShoeProduct(ShoeProduct shoeProduct) {
+        shoeRepository.save(shoeProduct);
+    }
 }
