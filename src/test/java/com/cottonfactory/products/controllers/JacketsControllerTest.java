@@ -28,7 +28,6 @@ public class JacketsControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-
     
 	/* Update to response structure
 	 * { "data":{ "id":1, "size":"" }, "errors":[
@@ -72,7 +71,6 @@ public class JacketsControllerTest {
             .andExpect(jsonPath("$.data").doesNotExist())
             .andExpect(jsonPath("$.errors").exists())
             .andExpect(jsonPath("$.errors.length()").value(3));
-          
     }
 
      private String toString(Jacket jacket) throws JsonProcessingException {

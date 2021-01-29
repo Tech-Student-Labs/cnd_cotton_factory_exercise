@@ -1,5 +1,6 @@
 package com.cottonfactory.products.entities;
 
+
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Pattern;
 import org.springframework.lang.NonNull;
 
 import com.cottonfactory.ProductConstants;
+
 
 @Entity
 public class Jacket {
