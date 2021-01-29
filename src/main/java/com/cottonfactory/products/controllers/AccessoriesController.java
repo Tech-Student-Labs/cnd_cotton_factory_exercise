@@ -22,7 +22,7 @@ public class AccessoriesController {
     }
 
     @GetMapping("/api/products/accessories")
-    @ResponseStatus(HttpStatus.OK)git
+    @ResponseStatus(HttpStatus.OK)
     public List<Accessories> getAllAccessories(){
         return accessoriesService.getAllAccessories();
     }
