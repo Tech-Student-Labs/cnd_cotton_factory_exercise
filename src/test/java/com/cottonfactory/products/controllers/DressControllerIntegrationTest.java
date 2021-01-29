@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,21 +18,22 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.Mockito.never;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-@Transactional
 public class DressControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired @Lazy
+    @Autowired
+    @Lazy
     private ObjectMapper mapper;
 
     @MockBean
@@ -39,6 +41,7 @@ public class DressControllerIntegrationTest {
 
     /**
      * Test for empty dress from the repository
+     *
      * @throws Exception
      */
     @Test
@@ -50,6 +53,7 @@ public class DressControllerIntegrationTest {
 
     /**
      * Test to get all the dress form the repository
+     *
      * @throws Exception
      */
     @Test
@@ -62,7 +66,33 @@ public class DressControllerIntegrationTest {
     }
 
     /**
+     * Test to get all the dress from the repository
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test_addDress() throws Exception {
+        when(dressRepository.save(addDress())).thenReturn(addDress());
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/products/dress")
+                .content(mapper.writeValueAsString(addDress())).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id",is(0)))
+                .andExpect(jsonPath("$.type").value("tunic"));
+    }
+
+    /**
      * Util method to construct the Dress entity object.
+     *
+     * @return
+     */
+    private DressEntity addDress() {
+        return DressEntity.builder().type("tunic").build();
+    }
+
+
+    /**
+     * Util method to construct the Dress entity objects.
+     *
      * @return
      */
     private List<DressEntity> getAllDress() {

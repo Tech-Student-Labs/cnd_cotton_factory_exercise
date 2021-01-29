@@ -1,23 +1,20 @@
 package com.cottonfactory.products.entities;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Builder
 public class DressEntity {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
+
     private String type;
     private Integer waistSize;
     private Integer hipSize;
