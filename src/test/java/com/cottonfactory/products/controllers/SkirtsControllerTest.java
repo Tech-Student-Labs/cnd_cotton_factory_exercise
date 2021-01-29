@@ -2,6 +2,7 @@ package com.cottonfactory.products.controllers;
 
 import com.cottonfactory.products.entities.Skirt;
 import com.cottonfactory.products.repositories.SkirtsRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(controllers ={SkirtsController.class})
+@WebMvcTest(controllers = {SkirtsController.class})
 public class SkirtsControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -44,6 +47,24 @@ public class SkirtsControllerTest {
         mockMvc.perform(get("/api/products/skirts/{id}", 1))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.id").value(1));
+    }
+
+    @Test
+    public void testAddSkirt() throws Exception {
+        Skirt skirt = Skirt.builder().type("mini").id(1).build();
+        when(skirtsRepository.save(any())).thenReturn(skirt);
+
+        mockMvc.perform(
+                post("/api/products/skirts")
+                        .content(
+                                new ObjectMapper()
+                                        .writeValueAsString(
+                                                Skirt.builder().type("mini").build()
+                                        )
+                        )
+                        .contentType("application/json"))
+                .andExpect((status().isCreated()))
+                .andExpect(jsonPath("$.id").value(1));
     }
 
     private List<Skirt> buildSkirtList(int count){

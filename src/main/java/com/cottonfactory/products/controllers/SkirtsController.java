@@ -4,10 +4,8 @@ import com.cottonfactory.products.entities.Skirt;
 import com.cottonfactory.products.repositories.SkirtsRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +25,11 @@ public class SkirtsController {
     @GetMapping("skirts/{id}")
     public Skirt getSkirtById(@PathVariable int id) {
         return skirtsRepository.findById(id).get();
+    }
 
+    @PostMapping("skirts")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Skirt addSkirt(@RequestBody Skirt skirt) {
+        return skirtsRepository.save(skirt);
     }
 }
