@@ -20,7 +20,11 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.16'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
     runtimeOnly 'mysql:mysql-connector-java'
+<<<<<<< HEAD
     runtimeOnly 'com.h2database:h2'
+=======
+	  runtimeOnly 'com.h2database:h2'
+>>>>>>> 854b87f18d18d3475d0148746629f205029beb14
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
