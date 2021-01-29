@@ -2,6 +2,7 @@ package com.cottonfactory.products.services;
 
 
 import com.cottonfactory.products.entities.Tie;
+
 import com.cottonfactory.products.repositories.TieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,12 +13,17 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
 
 public class TieServiceUnitTest {
 
 
     private TieService service;
-
 
     private TieRepository mockTieRepository;
 
@@ -25,7 +31,6 @@ public class TieServiceUnitTest {
     void init() {
         mockTieRepository = mock(TieRepository.class);
         service = new TieService(mockTieRepository);
-
     }
 
 
@@ -47,7 +52,9 @@ public class TieServiceUnitTest {
 
        Tie actual =  service.createTie(tie);
 
+        assertNotNull(actual.getId());
         assertEquals(1,actual.getId());
+        
         assertEquals(tie.getColor(), actual.getColor());
         assertEquals(tie.getMaterial(), actual.getMaterial());
         assertEquals(tie.getType(), actual.getType());
