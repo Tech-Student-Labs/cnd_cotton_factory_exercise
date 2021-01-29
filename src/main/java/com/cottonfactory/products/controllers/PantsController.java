@@ -1,12 +1,12 @@
 package com.cottonfactory.products.controllers;
 
+import com.cottonfactory.products.entities.Pants;
 import com.cottonfactory.products.services.PantsService;
 import com.cottonfactory.products.services.dtos.PantsDto;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +21,11 @@ public class PantsController {
     @GetMapping
     public List<PantsDto> getAllPants() {
         return pantsService.findAllPants();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public PantsDto createNewPants(@RequestBody Pants pantsEntity) {
+        return pantsService.createNewPants(pantsEntity);
     }
 }
