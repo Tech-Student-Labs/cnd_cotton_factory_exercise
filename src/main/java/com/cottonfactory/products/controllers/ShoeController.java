@@ -39,4 +39,10 @@ public class ShoeController {
         shoeProduct.setId(id);
         shoeService.updateShoeProduct(shoeProduct);
     }
+
+    @PatchMapping("/{id}")
+    public void patchShoeProduct(@PathVariable Long id, @RequestBody ShoeProduct shoeProduct){
+        shoeProduct.setId(id);
+        shoeService.updateShoeProduct(shoeProduct);
+    }
 }

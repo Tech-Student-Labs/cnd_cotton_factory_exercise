@@ -108,6 +108,23 @@ designer options: Encoded, Footsy, Stepper Leper
 
     }
 
+    @Test
+    public void test_Patch_Shoe() throws Exception {
+        test_Add_Shoe();
+        test_Add_Shoe();
+        ShoeProduct shoeProduct = ShoeProduct.builder()
+                .height("knee")
+                .designer("Stepper")
+                .laced(false)
+                .build();
+
+        mockMvc.perform(patch("/api/products/shoe/2")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(shoeProduct)))
+                .andExpect(status().isOk());
+
+    }
+
 
 
   }
