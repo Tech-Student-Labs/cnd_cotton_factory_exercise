@@ -20,6 +20,14 @@ public class AccessoriesControllerIT {
     public void getAllAccessories() throws Exception {
         mockMvc.perform(get("/api/products/accessories"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").exists());
+                .andExpect(jsonPath("$[0]").exists())
+                .andExpect(jsonPath("$[0].id").exists())
+                .andExpect(jsonPath("$[0].type").value("belt"))
+                .andExpect(jsonPath("$[0].size").value(10))
+                .andExpect(jsonPath("$[0].material").value("cotton"))
+                .andExpect(jsonPath("$[0].designer").value("encoded"))
+                .andExpect(jsonPath("$[0].color").value("red"))
+                .andExpect(jsonPath("$[0].price").value(10.0));
+
     }
 }
