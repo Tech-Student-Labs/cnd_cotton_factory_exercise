@@ -30,4 +30,8 @@ public class ShoeService {
     public void updateShoeProduct(ShoeProduct shoeProduct) {
         shoeRepository.save(shoeProduct);
     }
+
+    public void deleteShoeProduct(Long id) {
+        shoeRepository.deleteById(id);
+    }
 }

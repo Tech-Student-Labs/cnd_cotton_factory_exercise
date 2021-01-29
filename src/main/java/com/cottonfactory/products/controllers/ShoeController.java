@@ -45,4 +45,10 @@ public class ShoeController {
         shoeProduct.setId(id);
         shoeService.updateShoeProduct(shoeProduct);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteShoeProduct(@PathVariable Long id){
+        shoeService.deleteShoeProduct(id);
+    }
 }

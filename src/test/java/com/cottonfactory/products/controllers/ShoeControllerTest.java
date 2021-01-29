@@ -125,6 +125,13 @@ designer options: Encoded, Footsy, Stepper Leper
 
     }
 
+    @Test
+    public void test_Delete_Shoe() throws Exception {
+        test_Add_Shoe();
+        test_Add_Shoe();
 
+        mockMvc.perform(delete("/api/products/shoe/2"))
+                .andExpect(status().isNoContent());
 
-  }
+    }
+}
