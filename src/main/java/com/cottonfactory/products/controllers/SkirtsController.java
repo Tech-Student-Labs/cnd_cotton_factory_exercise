@@ -2,6 +2,7 @@ package com.cottonfactory.products.controllers;
 
 import com.cottonfactory.products.entities.Skirt;
 import com.cottonfactory.products.repositories.SkirtsRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products/")
+@Api(tags = "skirts")
 public class SkirtsController {
     @Autowired
     private SkirtsRepository skirtsRepository;
